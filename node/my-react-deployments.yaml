@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   creationTimestamp: null
+  namespace: default
   labels:
     app: my-react-deployments
   name: my-react-deployments
