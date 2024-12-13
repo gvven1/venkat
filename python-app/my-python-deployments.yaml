@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  namespace: default
+  labels:
+    app: my-python-deployments
+  name: my-python-deployments
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-python-deployments
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: my-python-deployments
+    spec:
+      containers:
+      - image: amuldevopstools.azurecr.io/python_jenkins:v1
+        name: my-python-app-latestss
+        imagePullPolicy: Always
+        resources: {}
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: acrsecret
+
+---
+apiVersion: v1
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJhbXVsZGV2b3BzdG9vbHMuYXp1cmVjci5pbyI6eyJ1c2VybmFtZSI6ImFtdWxkZXZvcHN0b29scyIsInBhc3N3b3JkIjoiRFJ6NmxMTFZoMmhicEFySHBCWjNjbkVUSnVwWjdvMXpwcG4xNHd5RXdmK0FDUkFNV2VPdSIsImF1dGgiOiJZVzExYkdSbGRtOXdjM1J2YjJ4ek9rUlNlalpzVEV4V2FESm9ZbkJCY2tod1Fsb3pZMjVGVkVwMWNGbzNiekY2Y0hCdU1UUjNlVVYzWml0QlExSkJUVmRsVDNVPSJ9fX0=
+kind: Secret
+metadata:
+    name: acrsecret
+  namespace: python
+type: kubernetes.io/dockerconfigjson
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: python
+spec: {}
