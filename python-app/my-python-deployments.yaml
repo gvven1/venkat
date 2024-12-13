@@ -1,11 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
-  namespace: default
+  namespace: python
+  name: my-python-deployments
   labels:
     app: my-python-deployments
-  name: my-python-deployments
 spec:
   replicas: 2
   selector:
