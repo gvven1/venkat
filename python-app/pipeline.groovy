@@ -24,7 +24,6 @@
     stage(‘Deploy’) {
     steps {
     sh 'kubectl apply -f ./python-app/my-python-deployments.yaml   --force'
-   
     }
     }
     }
