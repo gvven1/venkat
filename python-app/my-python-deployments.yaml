@@ -1,10 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: python
-  name: my-python-deployments
+  creationTimestamp: null
+  namespace: default
   labels:
     app: my-python-deployments
+  name: my-python-deployments
 spec:
   replicas: 2
   selector:
@@ -33,7 +34,9 @@ data:
   .dockerconfigjson: eyJhdXRocyI6eyJhbXVsZGV2b3BzdG9vbHMuYXp1cmVjci5pbyI6eyJ1c2VybmFtZSI6ImFtdWxkZXZvcHN0b29scyIsInBhc3N3b3JkIjoiRFJ6NmxMTFZoMmhicEFySHBCWjNjbkVUSnVwWjdvMXpwcG4xNHd5RXdmK0FDUkFNV2VPdSIsImF1dGgiOiJZVzExYkdSbGRtOXdjM1J2YjJ4ek9rUlNlalpzVEV4V2FESm9ZbkJCY2tod1Fsb3pZMjVGVkVwMWNGbzNiekY2Y0hCdU1UUjNlVVYzWml0QlExSkJUVmRsVDNVPSJ9fX0=
 kind: Secret
 metadata:
-    name: acrsecret
-  namespace: python
+  creationTimestamp: "2024-12-10T10:02:58Z"
+  name: acrsecret
+  namespace: default
+  resourceVersion: "56170"
+  uid: 916515f3-e24a-4697-9c26-98226c7d634a
 type: kubernetes.io/dockerconfigjson
-
