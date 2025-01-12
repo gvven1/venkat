@@ -38,7 +38,7 @@ jobs:
           kubectl config get-clusters
 
           kubectl config set-credentials github-actions-sa  --client-key=/tmp/client.key --client-certificate=/tmp/client.crt
-          kubectl config set-context github-actions-context --cluster=remote-cluster --user=github-actions-sa
+          kubectl config set-context github-actions-context --cluster=remote-cluster --user=minikube
           kubectl config use-context github-actions-context
           kubectl config get-contexts
           kubectl config get-clusters
