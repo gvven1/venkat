@@ -14,8 +14,8 @@
     script {
     withCredentials([usernamePassword(credentialsId: 'my-docker-hub-credential', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
     sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD amuldevopstools.azurecr.io"
-    sh "docker build -t amuldevopstools.azurecr.io/python_jenkins:v2 ./python-app"
-    sh "docker push amuldevopstools.azurecr.io/python_jenkins:v2"
+    sh "docker build -t amuldevopstools.azurecr.io/python_jenkins:v1 ./python-app"
+    sh "docker push amuldevopstools.azurecr.io/python_jenkins:v1"
     }
     }
     }
