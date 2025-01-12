@@ -25,7 +25,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build --no-cache -t amuldevopstools.azurecr.io/python_gitaction:v1 .
+          docker build --no-cache -t amuldevopstools.azurecr.io/python_gitaction:v1 src/.
           docker push amuldevopstools.azurecr.io/python_gitaction:v1
 
       - name: Set up Kubernetes Kubeconfig with Service Account
