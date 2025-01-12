@@ -28,22 +28,18 @@ jobs:
           docker build  -t amuldevopstools.azurecr.io/python_gitaction:v1 ./python-gitact
           docker push amuldevopstools.azurecr.io/python_gitaction:v1
 
-      - name: Set up Kubernetes Kubeconfig with Service Account
-        run: |
-          echo "${{ secrets.KUBERNETES_CA_CRT }}" > /tmp/ca.crt
-          echo "${{ secrets.KUBERNETES_CLIENT_CRT }}" > /tmp/client.crt
-          echo "${{ secrets.KUBERNETES_CLIENT_KEY }}" > /tmp/client.key
-         
-          kubectl config set-cluster minikube --server=${{ secrets.KUBERNETES_SERVER_URL }} --certificate-authority=/tmp/ca.crt
-          
-          kubectl config set-credentials minikube  --client-key=/tmp/client.key --client-certificate=/tmp/client.crt
-          kubectl config set-context minikube --cluster=minikube --user=minikube
-          kubectl config use-context minikube
+      - name: Set the Kubernetes context
+        uses: azure/k8s-set-context@v2
+        with:
+          method: service-account
+          k8s-url: https://192.168.58.2:8443
+          k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
+
 
 
       - name: Apply Kubernetes Deployment
         run: |
-          kubectl get nodes
+          kubectl get pods
           
           
           
