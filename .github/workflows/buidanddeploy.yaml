@@ -38,8 +38,8 @@ jobs:
 
       - name: Apply Kubernetes Deployment
         run: |
-          kubectl apply -f src/deployment.yaml
+          kubectl apply -f ./python-gitact/src/deployment.yaml
           
       - name: Deploy to Kubernetes
         run: |
-          kubectl set image deployment/python-app-deployment python-app-container=${{ secrets.DOCKER_USERNAME }}/python-app:latest
+          kubectl set image deployment/my-python-deployments my-python-app-latests=amuldevopstools.azurecr.io/python_gitaction:v1
