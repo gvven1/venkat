@@ -31,10 +31,13 @@ jobs:
       - name: Set up Kubernetes Kubeconfig with Service Account
         run: |
           echo "${{ secrets.KUBERNETES_CA_CRT }}" > /tmp/ca.crt
+          echo "${{ secrets.KUBERNETES_CLIENT_CRT }}" > /tmp/client.crt
+          echo "${{ secrets.KUBERNETES_CLIENT_KEY }}" > /tmp/client.key
           cat /tmp/ca.crt
           kubectl config set-cluster remote-cluster --server=${{ secrets.KUBERNETES_SERVER_URL }} --certificate-authority=/tmp/ca.crt
           kubectl config get-clusters
-          kubectl config set-credentials github-actions-sa --token=${{ secrets.KUBERNETES_SERVICE_ACCOUNT_TOKEN }}
+
+          kubectl config set-credentials github-actions-sa  --client-key=/tmp/client.key --client-certificate=/tmp/client.crt
           kubectl config set-context github-actions-context --cluster=remote-cluster --user=github-actions-sa
           kubectl config use-context github-actions-context
           kubectl config get-contexts
