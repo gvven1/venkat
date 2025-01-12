@@ -4,7 +4,7 @@ FROM python:3.5
 WORKDIR /app
 
 # Install app dependencies
-COPY src/requirements.txt ./
+COPY python-gitact/src/requirements.txt ./
 
 RUN pip install -r ./requirements.txt
 
