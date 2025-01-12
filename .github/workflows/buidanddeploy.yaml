@@ -38,7 +38,7 @@ jobs:
 
       - name: Apply Kubernetes Deployment
         run: |
-          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f src/deployment.yaml
           
       - name: Deploy to Kubernetes
         run: |
