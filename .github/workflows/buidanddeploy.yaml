@@ -48,7 +48,8 @@ jobs:
           echo "${{ secrets.KUBERNETES_CA_CRT }}"
           echo "${{ secrets.KUBERNETES_SERVICE_ACCOUNT_TOKEN}}"
           kubectl get nodes
-          kubectl apply -f ./python-gitact/src/deployment.yaml
+          
+          
           
       - name: Deploy to Kubernetes
         run: |
