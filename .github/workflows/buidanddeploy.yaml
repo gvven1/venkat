@@ -39,7 +39,6 @@ jobs:
       - name: Apply Kubernetes Deployment
         run: |
           kubectl get nodes
-          kubectl get pods -A
           kubectl apply -f ./python-gitact/src/deployment.yaml
           
       - name: Deploy to Kubernetes
