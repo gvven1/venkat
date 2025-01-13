@@ -27,8 +27,8 @@ jobs:
         run: |
           docker build  -t amuldevopstools.azurecr.io/python_gitaction:v1 ./python-gitact
           docker push amuldevopstools.azurecr.io/python_gitaction:v1
-      - name: Azure Login
-        uses: Azure/login@v1.4.6
+      - name: Azure CLI Action
+        uses: Azure/cli@v2.1.0
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
