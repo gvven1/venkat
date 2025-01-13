@@ -27,15 +27,10 @@ jobs:
         run: |
           docker build  -t amuldevopstools.azurecr.io/python_gitaction:v1 ./python-gitact
           docker push amuldevopstools.azurecr.io/python_gitaction:v1
-
-      - name: Set the Kubernetes context
-        uses: azure/k8s-set-context@v2
+      - name: Azure Login
+        uses: Azure/login@v1.4.6
         with:
-          method: service-account
-          k8s-url: https://192.168.58.2:8443
-          k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
-
-
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Apply Kubernetes Deployment
         run: |
