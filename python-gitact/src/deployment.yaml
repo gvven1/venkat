@@ -25,7 +25,7 @@ spec:
         app: my-python-deployments
     spec:
       containers:
-      - image: amuldevopstools.azurecr.io/python_gitaction:v1
+      - image: amuldevopstools.azurecr.io/python_gitaction:v2
         name: my-python-app-latests
         imagePullPolicy: Always
         resources: {}
