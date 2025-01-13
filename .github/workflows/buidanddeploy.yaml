@@ -27,18 +27,11 @@ jobs:
         run: |
           docker build  -t amuldevopstools.azurecr.io/python_gitaction:v1 ./python-gitact
           docker push amuldevopstools.azurecr.io/python_gitaction:v1
-      - name: Set up Kubernetes Kubeconfig with Service Account
-        run: |
-          echo "${{ secrets.KUBERNETES_CA_CRT }}" > /tmp/ca.crt
-          echo "${{ secrets.KUBERNETES_CLIENT_CRT }}" > /tmp/client.crt
-          echo "${{ secrets.KUBERNETES_CLIENT_KEY }}" > /tmp/client.key
-         
-          kubectl config set-cluster Dev-Ops --server=${{ secrets.KUBERNETES_SERVER_URL }} --certificate-authority=/tmp/ca.crt
-          
-          kubectl config set-credentials Dev-Ops  --client-key=/tmp/client.key --client-certificate=/tmp/client.crt
-          kubectl config set-context Dev-Ops --cluster=Dev-Ops --user=clusterUser_Amul-AKS_Dev-Ops
-          kubectl config use-context Dev-Ops
 
+      - name: Azure Login
+        uses: Azure/login@v2.1.0
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
 
       - name: Apply Kubernetes Deployment
