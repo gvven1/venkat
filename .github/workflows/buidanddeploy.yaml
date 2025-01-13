@@ -33,13 +33,14 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-
+    - name: Gets K8s context
+      uses: azure/aks-set-context@94ccc775c1997a3fcfbfbce3c459fec87e0ab188
+      with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          resource-group: Amul-AKS
+          cluster-name: Dev-Ops
+      id: login
       - name: Apply Kubernetes Deployment
         run: |
           kubectl get pods
           
-          
-          
-      - name: Deploy to Kubernetes
-        run: |
-          kubectl set image deployment/my-python-deployments my-python-app-latests=amuldevopstools.azurecr.io/python_gitaction:v1
